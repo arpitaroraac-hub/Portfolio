@@ -306,8 +306,8 @@ elif page == "LIVE ANALYSIS":
     st.sidebar.header("Filters")
     selected_regions = st.sidebar.multiselect("Region", options=regions, default=regions)
     selected_categories = st.sidebar.multiselect("Category", options=categories, default=categories)
-    min_date = df['Order_Date'].min()
-    max_date = df['Order_Date'].max()
+    min_date = pd.to_datetime(df['Order_Date']).min().date()
+    max_date = pd.to_datetime(df['Order_Date']).max().date()
     date_range = st.sidebar.date_input("Date Range", value=(min_date, max_date), min_value=min_date, max_value=max_date)
 
     df['Order_Date'] = pd.to_datetime(df['Order_Date'])
